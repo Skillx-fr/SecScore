@@ -1,0 +1,655 @@
+{
+    "themes": [
+        {
+            "id": "web_security",
+            "title": "Sécurité Web",
+            "description": "Évaluation de la sécurité des applications web et des interfaces exposées.",
+            "questions": [
+                {
+                    "id": "web_1",
+                    "text": "Comment l'authentification des utilisateurs est-elle gérée ?",
+                    "options": [
+                        {
+                            "text": "Mot de passe simple uniquement",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "L'authentification à facteur unique est vulnérable aux attaques par force brute et au vol d'identifiants. Le MFA est essentiel."
+                        },
+                        {
+                            "text": "Politique de mot de passe forte (complexité + rotation)",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "C'est un bon début, mais sans MFA, le risque de compromission reste significatif."
+                        },
+                        {
+                            "text": "Authentification multifacteur (MFA) imposée",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Excellent. Le MFA bloque la grande majorité des tentatives d'accès non autorisées."
+                        }
+                    ]
+                },
+                {
+                    "id": "web_2",
+                    "text": "Utilisez-vous HTTPS sur l'ensemble de votre site web ?",
+                    "options": [
+                        {
+                            "text": "Non, HTTP par défaut ou mixte",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Les données transitent en clair. Tout attaquant sur le réseau peut intercepter les identifiants et données sensibles."
+                        },
+                        {
+                            "text": "HTTPS activé mais certificats parfois expirés/invalides",
+                            "score": 2,
+                            "riskLevel": "high",
+                            "feedback": "Les erreurs de certificat habituent les utilisateurs à ignorer les alertes de sécurité."
+                        },
+                        {
+                            "text": "HTTPS forcé (HSTS) avec certificats valides",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Standard de sécurité respecté. HSTS protège contre les attaques de type 'downgrade'."
+                        }
+                    ]
+                },
+                {
+                    "id": "web_3",
+                    "text": "Effectuez-vous des validations des entrées utilisateurs (Input Validation) ?",
+                    "options": [
+                        {
+                            "text": "Aucune validation spécifique",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Risque critique d'injections SQL, XSS et autres attaques par injection."
+                        },
+                        {
+                            "text": "Validation côté client (Javascript) uniquement",
+                            "score": 2,
+                            "riskLevel": "high",
+                            "feedback": "La validation client est facilement contournable. Elle ne protège pas le serveur."
+                        },
+                        {
+                            "text": "Validation stricte côté serveur (Whitelisting)",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Indispensable pour prévenir les injections. Le serveur ne doit faire confiance à aucune donnée entrante."
+                        }
+                    ]
+                },
+                {
+                    "id": "web_4",
+                    "text": "Comment stockez-vous les mots de passe des utilisateurs ?",
+                    "options": [
+                        {
+                            "text": "En clair ou chiffrement réversible",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Catastrophique. En cas de fuite de base de données, tous les comptes sont compromis instantanément."
+                        },
+                        {
+                            "text": "MD5 ou SHA1",
+                            "score": 2,
+                            "riskLevel": "high",
+                            "feedback": "Ces algorithmes sont obsolètes et vulnérables aux attaques par collision ou tables arc-en-ciel."
+                        },
+                        {
+                            "text": "Algorithmes robustes (Argon2, bcrypt, PBKDF2) avec salage",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Bonne pratique. Le salage et un coût de calcul élevé protègent contre le cracking de masse."
+                        }
+                    ]
+                },
+                {
+                    "id": "web_5",
+                    "text": "Avez-vous mis en place des en-têtes de sécurité HTTP (CSP, X-Frame-Options, etc.) ?",
+                    "options": [
+                        {
+                            "text": "Non ou je ne sais pas",
+                            "score": 0,
+                            "riskLevel": "medium",
+                            "feedback": "Votre site est exposé à des attaques comme le Clickjacking ou le XSS qui pourraient être atténuées."
+                        },
+                        {
+                            "text": "Quelques-uns (ex: X-Frame-Options)",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "Mieux que rien, mais insuffisant pour une défense en profondeur."
+                        },
+                        {
+                            "text": "Oui, configuration complète (CSP strict, HSTS, etc.)",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Excellent niveau de durcissement du navigateur."
+                        }
+                    ]
+                },
+                {
+                    "id": "web_6",
+                    "text": "Comment gérez-vous les dépendances tierces (librairies, plugins) ?",
+                    "options": [
+                        {
+                            "text": "Mises à jour manuelles irrégulières",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Les composants obsolètes sont une porte d'entrée majeure (ex: Log4Shell)."
+                        },
+                        {
+                            "text": "Veille de sécurité mais mises à jour différées",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "Le délai entre la divulgation d'une faille et son correctif est critique."
+                        },
+                        {
+                            "text": "Scan automatisé (SCA) et mises à jour rapides",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "La meilleure approche pour gérer la chaîne d'approvisionnement logicielle."
+                        }
+                    ]
+                },
+                {
+                    "id": "web_7",
+                    "text": "Protection contre les attaques automatisées (Bots, Brute Force) ?",
+                    "options": [
+                        {
+                            "text": "Aucune protection",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Votre site est vulnérable au credential stuffing et au déni de service."
+                        },
+                        {
+                            "text": "Rate limiting basique (par IP)",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "Efficace contre les attaques simples, mais contournable par les botnets distribués."
+                        },
+                        {
+                            "text": "WAF et protection avancée contre les bots (CAPTCHA, etc.)",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Niveau de protection professionnel contre les menaces automatisées."
+                        }
+                    ]
+                },
+                {
+                    "id": "web_8",
+                    "text": "Gestion des messages d'erreur",
+                    "options": [
+                        {
+                            "text": "Affichage des détails techniques (Stack Trace)",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Divulguer des informations techniques aide les attaquants à comprendre votre infrastructure."
+                        },
+                        {
+                            "text": "Messages génériques pour l'utilisateur",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Bonne pratique. Ne donnez pas d'indices aux attaquants."
+                        }
+                    ]
+                },
+                {
+                    "id": "web_9",
+                    "text": "Protection contre les attaques CSRF (Cross-Site Request Forgery)",
+                    "options": [
+                        {
+                            "text": "Aucune mesure spécifique",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Un attaquant peut forcer vos utilisateurs à effectuer des actions à leur insu."
+                        },
+                        {
+                            "text": "Utilisation de tokens Anti-CSRF / SameSite Cookies",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Protection standard et efficace contre le CSRF."
+                        }
+                    ]
+                },
+                {
+                    "id": "web_10",
+                    "text": "Tests de sécurité (Pentest / Scanners)",
+                    "options": [
+                        {
+                            "text": "Jamais ou très rarement",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Vous naviguez à l'aveugle. Les vulnérabilités s'accumulent sans être détectées."
+                        },
+                        {
+                            "text": "Scans automatisés uniquement",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "Agit comme un filet de sécurité de base, mais manque les failles logiques complexes."
+                        },
+                        {
+                            "text": "Pentests réguliers et scans récurrents",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Approche proactive et mature de la sécurité."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "internal_si",
+            "title": "Sécurité Interne & Active Directory",
+            "description": "Audit de l'infrastructure interne, des postes de travail et de la gestion des identités.",
+            "questions": [
+                {
+                    "id": "si_1",
+                    "text": "Politique de privilèges administratifs (Active Directory)",
+                    "options": [
+                        {
+                            "text": "Nombreux administrateurs de domaine, comptes génériques",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Le risque de compromission totale du domaine est maximal. Il faut réduire drastiquement ces comptes."
+                        },
+                        {
+                            "text": "Gestion correcte mais quelques exceptions",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "Attention aux exceptions qui deviennent souvent la règle."
+                        },
+                        {
+                            "text": "Modèle Tiering (Tier 0/1/2) et Moindre Privilège strict",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Le modèle de référence pour sécuriser l'AD contre les mouvements latéraux."
+                        }
+                    ]
+                },
+                {
+                    "id": "si_2",
+                    "text": "Mises à jour et Patch Management (OS & Logiciels)",
+                    "options": [
+                        {
+                            "text": "Manuel, quand on y pense",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Laisser des systèmes non patchés est la cause n°1 des infections (Ransomware)."
+                        },
+                        {
+                            "text": "Automatisé pour l'OS, manuel pour les applications",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "Les failles applicatives (Adobe, Chrome, Office) sont tout aussi exploitées."
+                        },
+                        {
+                            "text": "Automatisé et centralisé pour tout le parc",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Indispensable pour réduire la surface d'attaque exploitable."
+                        }
+                    ]
+                },
+                {
+                    "id": "si_3",
+                    "text": "Segmentation du réseau",
+                    "options": [
+                        {
+                            "text": "Réseau plat (tout le monde accède à tout)",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Un seul poste compromis permet à l'attaquant d'accéder aux serveurs critiques."
+                        },
+                        {
+                            "text": "VLANs par département mais peu de filtrage",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "La segmentation sans filtrage (ACLs/Firewall) n'apporte que peu de sécurité."
+                        },
+                        {
+                            "text": "Segmentation stricte (Zones, DMZ, Filtrage interne)",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Limite efficacement la propagation latérale d'une attaque."
+                        }
+                    ]
+                },
+                {
+                    "id": "si_4",
+                    "text": "Sauvegardes (Backups)",
+                    "options": [
+                        {
+                            "text": "Sauvegardes sur disque réseau accessible, rarement testées",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Les ransomwares chiffreront aussi vos sauvegardes en ligne. Testez vos restaurations !"
+                        },
+                        {
+                            "text": "Sauvegardes régulières, testées annuellement",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "Correct, mais attention à la protection des supports de sauvegarde."
+                        },
+                        {
+                            "text": "Règle 3-2-1, sauvegardes immuables/hors ligne, tests fréquents",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "La seule véritable assurance contre les ransomwares modernes."
+                        }
+                    ]
+                },
+                {
+                    "id": "si_5",
+                    "text": "Protection des postes de travail (Endpoint)",
+                    "options": [
+                        {
+                            "text": "Antivirus gratuit ou obsolète",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Inefficace contre les menaces modernes 'fileless' ou obfusquées."
+                        },
+                        {
+                            "text": "Antivirus professionnel standard",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "Protège du connu, mais peut manquer les attaques ciblées avancées."
+                        },
+                        {
+                            "text": "EDR (Endpoint Detection & Response) géré",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Permet de détecter et répondre aux comportements suspects en temps réel."
+                        }
+                    ]
+                },
+                {
+                    "id": "si_6",
+                    "text": "Accès distant (VPN / RDP)",
+                    "options": [
+                        {
+                            "text": "RDP ouvert sur Internet ou VPN sans MFA",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Invitation publique au piratage. RDP sur internet est une faille critique."
+                        },
+                        {
+                            "text": "VPN sécurisé par mot de passe unique",
+                            "score": 3,
+                            "riskLevel": "high",
+                            "feedback": "Le vol d'identifiants VPN est très courant. Le MFA est requis."
+                        },
+                        {
+                            "text": "VPN avec MFA ou ZTNA (Zero Trust)",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Accès distant sécurisé selon les standards actuels."
+                        }
+                    ]
+                },
+                {
+                    "id": "si_7",
+                    "text": "Sensibilisation des employés (Phishing)",
+                    "options": [
+                        {
+                            "text": "Aucune formation",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "L'humain est souvent le maillon faible. L'ignorer est dangereux."
+                        },
+                        {
+                            "text": "Note d'information annuelle",
+                            "score": 3,
+                            "riskLevel": "medium",
+                            "feedback": "Peu efficace. La vigilance s'érode vite."
+                        },
+                        {
+                            "text": "Campagnes de test e-learning régulières",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Crée une culture de sécurité et maintient la vigilance."
+                        }
+                    ]
+                },
+                {
+                    "id": "si_8",
+                    "text": "Sécurité du Wi-Fi",
+                    "options": [
+                        {
+                            "text": "WEP ou WPA2 avec mot de passe simple/partagé",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Facile à pirater, permet d'intercepter le trafic réseau."
+                        },
+                        {
+                            "text": "WPA2/WPA3 Enterprise (802.1X)",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Authentification individuelle forte. Empêche l'accès facile au réseau."
+                        }
+                    ]
+                },
+                {
+                    "id": "si_9",
+                    "text": "Journalisation et Monitoring (Logs)",
+                    "options": [
+                        {
+                            "text": "Pas de centralisation, logs écrasés rapidement",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Impossible d'investiguer un incident ou de détecter une intrusion en cours."
+                        },
+                        {
+                            "text": "Centralisation (SIEM) et alertes configurées",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Visibilité essentielle pour la détection et la réponse aux incidents."
+                        }
+                    ]
+                },
+                {
+                    "id": "si_10",
+                    "text": "Contrôle des périphériques USB",
+                    "options": [
+                        {
+                            "text": "Autorisé sans restriction",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Vecteur classique d'infection et de fuite de données."
+                        },
+                        {
+                            "text": "Bloqué ou restreint par politique",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Réduit significativement les risques physiques."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cloud_saas",
+            "title": "Sécurité Cloud (AWS/Azure) & SaaS",
+            "description": "Évaluation de la posture de sécurité dans le Cloud et les services SaaS.",
+            "questions": [
+                {
+                    "id": "cloud_1",
+                    "text": "Authentification aux consoles d'administration Cloud",
+                    "options": [
+                        {
+                            "text": "Compte root utilisé, pas de MFA",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Pratique interdite. La compromission du compte root signifie la perte totale du tenant."
+                        },
+                        {
+                            "text": "Utilisateurs nominatifs, MFA activé partout",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Base indispensable de la sécurité Cloud."
+                        }
+                    ]
+                },
+                {
+                    "id": "cloud_2",
+                    "text": "Stockage de données (S3, Blob Storage)",
+                    "options": [
+                        {
+                            "text": "Certains buckets sont publics par erreur/défaut",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "L'une des causes les plus fréquentes de fuites de données massives."
+                        },
+                        {
+                            "text": "Tout privé, accès par identité (IAM) uniquement",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Contrôle d'accès maîtrisé."
+                        }
+                    ]
+                },
+                {
+                    "id": "cloud_3",
+                    "text": "Gestion des clés d'accès (API Keys)",
+                    "options": [
+                        {
+                            "text": "Clés statiques dans le code (Hardcoded)",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Si le code fuite (GitHub), vos clés fuitent. Risque critique."
+                        },
+                        {
+                            "text": "Utilisation de rôles IAM et gestionnaires de secrets",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Bonne pratique. Évite la gestion manuelle et risquée des secrets."
+                        }
+                    ]
+                },
+                {
+                    "id": "cloud_4",
+                    "text": "Shadow IT et SaaS non approuvés",
+                    "options": [
+                        {
+                            "text": "Aucun contrôle, les employés utilisent ce qu'ils veulent",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Données d'entreprise dispersées sur des services non sécurisés/non maîtrisés."
+                        },
+                        {
+                            "text": "CASB (Cloud Access Security Broker) ou filtrage Web",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Permet de découvrir et contrôler l'usage du Shadow IT."
+                        }
+                    ]
+                },
+                {
+                    "id": "cloud_5",
+                    "text": "Conformité et Localisation des données",
+                    "options": [
+                        {
+                            "text": "On ne sait pas où sont nos données",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Problème potentiel majeur de conformité (RGPD, etc.)."
+                        },
+                        {
+                            "text": "Zones géographiques définies et respectées",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Respect de la souveraineté et des régulations."
+                        }
+                    ]
+                },
+                {
+                    "id": "cloud_6",
+                    "text": "Sauvegardes des données SaaS (M365, Google Workspace)",
+                    "options": [
+                        {
+                            "text": "On compte sur la corbeille du fournisseur",
+                            "score": 2,
+                            "riskLevel": "medium",
+                            "feedback": "La rétention est limitée. Ne protège pas contre une malveillance interne ou ransomware."
+                        },
+                        {
+                            "text": "Solution de sauvegarde tierceCloud-to-Cloud",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Indispensable pour garantir la résilience des données SaaS."
+                        }
+                    ]
+                },
+                {
+                    "id": "cloud_7",
+                    "text": "Review des droits d'accès SaaS (Fichiers partagés)",
+                    "options": [
+                        {
+                            "text": "Jamais, les liens de partage restent actifs indéfiniment",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Accumulation de liens publics 'Tout le monde avec le lien' exposant des données."
+                        },
+                        {
+                            "text": "Revue périodique ou expiration automatique",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Hygiène nécessaire pour limiter l'exposition dans le temps."
+                        }
+                    ]
+                },
+                {
+                    "id": "cloud_8",
+                    "text": "Chiffrement des données Cloud",
+                    "options": [
+                        {
+                            "text": "Par défaut uniquement",
+                            "score": 5,
+                            "riskLevel": "medium",
+                            "feedback": "Souvent suffisant, mais le fournisseur détient les clés."
+                        },
+                        {
+                            "text": "Chiffrement géré par le client (CMK/BYOK) pour les données sensibles",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Niveau de confidentialité maximal vis-à-vis du fournisseur."
+                        }
+                    ]
+                },
+                {
+                    "id": "cloud_9",
+                    "text": "Surveillance des coûts et ressources (Crypto-mining)",
+                    "options": [
+                        {
+                            "text": "Pas d'alertes de facturation",
+                            "score": 0,
+                            "riskLevel": "medium",
+                            "feedback": "Une compromission de compte peut mener à une facture énorme (minage illicite)."
+                        },
+                        {
+                            "text": "Alertes de budget et détection d'anomalies",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Permet de réagir vite en cas d'abus de ressources."
+                        }
+                    ]
+                },
+                {
+                    "id": "cloud_10",
+                    "text": "Isolation des environnements (Dev / Prod)",
+                    "options": [
+                        {
+                            "text": "Tout dans le même compte/abonnement",
+                            "score": 0,
+                            "riskLevel": "high",
+                            "feedback": "Une erreur en Dev peut impacter la Prod. Risque de sécurité élevé."
+                        },
+                        {
+                            "text": "Comptes/Souscriptions séparés avec accès distincts",
+                            "score": 10,
+                            "riskLevel": "low",
+                            "feedback": "Isolation stricte recommandée pour la sécurité et la stabilité."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
