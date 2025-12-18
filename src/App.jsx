@@ -5,6 +5,7 @@ import { QuestionWizard } from './components/QuestionWizard';
 import { ResultsDashboard } from './components/ResultsDashboard';
 import { LiveScoreGauge } from './components/LiveScoreGauge';
 import data from './data/questions.json';
+import pkg from '../package.json';
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState(null);
@@ -87,7 +88,14 @@ function App() {
 
       {/* Footer */}
       <footer className="border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} SecScore &bull; Skillx-fr</p>
+        <div className="flex flex-col items-center gap-2">
+          <p>
+            &copy; {new Date().getFullYear()} SecScore v{pkg.version} &bull; Par <a href="https://skillx.fr" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">Skillx.fr</a>
+          </p>
+          <a href="https://github.com/Skillx-fr/SecScore" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-slate-400 transition-colors">
+            Voir sur GitHub
+          </a>
+        </div>
       </footer>
     </div>
   );
