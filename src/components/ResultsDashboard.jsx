@@ -61,6 +61,44 @@ export function ResultsDashboard({ score, maxScore, grade, onReset, answers }) {
         doc.save("SecScore_Rapport.pdf");
     };
 
+    const handleGenerateEmail = () => {
+        // Identify top 3 critical risks
+        // Filter questions where user score < max score AND riskLevel is "high" 
+        const criticalRisks = allQuestions.filter(q => {
+            const userAnswer = answers[q.id];
+            const maxQScore = Math.max(...q.options.map(o => o.score));
+            if (!userAnswer || userAnswer.score >= maxQScore) return false;
+
+            // Find the option they selected (or assume 0 score if missing) to check its risk level??
+            // Actually, the risk comes from the fact they *missed* the good answer.
+            // Let's use the 'high' risk check from the PriorityMatrix logic or just check if it's high impact.
+            // Simplification: Check if the question allows a 'high' risk answer.
+            return q.options.some(o => o.riskLevel === 'high');
+        }).slice(0, 3);
+
+        const riskList = criticalRisks.map(r => `- ${r.text}`).join('\n');
+
+        const emailBody = `Objet : Synthèse des risques cybersécurité - Actions prioritaires requises
+
+Bonjour,
+
+Suite à un audit rapide de notre posture de sécurité (effectué via SecScore), nous avons identifié des vulnérabilités critiques nécessitant une attention immédiate.
+
+Score actuel de sécurité : ${grade} (${score}/${maxScore})
+
+Les points d'alerte principaux qui exposent l'entreprise sont :
+${riskList}
+
+Ne pas traiter ces points nous expose à des risques élevés (Ransomware, Fuite de données, Arrêt d'activité).
+
+Je propose de planifier une réunion pour valider un plan d'action correctif et le budget associé.
+
+Cordialement,`;
+
+        navigator.clipboard.writeText(emailBody);
+        alert("E-mail copié dans le presse-papier !");
+    };
+
     return (
         <div className="max-w-6xl mx-auto p-4 md:p-8 text-center">
             <motion.div
@@ -92,7 +130,7 @@ export function ResultsDashboard({ score, maxScore, grade, onReset, answers }) {
                 {/* Priority Matrix */}
                 <PriorityMatrix questions={allQuestions} answers={answers} />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-lg mt-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl mt-8">
                     <button
                         onClick={onReset}
                         className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-slate-700 hover:bg-slate-600 transition-colors font-semibold"
@@ -106,6 +144,13 @@ export function ResultsDashboard({ score, maxScore, grade, onReset, answers }) {
                     >
                         <Download className="w-5 h-5" />
                         Exporter PDF
+                    </button>
+                    <button
+                        onClick={handleGenerateEmail}
+                        className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-purple-600 hover:bg-purple-500 transition-colors font-semibold shadow-lg shadow-purple-500/20"
+                    >
+                        <span className="text-xl">📧</span>
+                        Email CODIR
                     </button>
                 </div>
             </motion.div>
