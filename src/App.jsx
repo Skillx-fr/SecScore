@@ -90,7 +90,7 @@ function App() {
       <footer className="border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
         <div className="flex flex-col items-center gap-2">
           <p>
-            &copy; {new Date().getFullYear()} SecScore v{pkg.version} &bull; Par <a href="https://skillx.fr" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">Skillx.fr</a>
+            &copy; {new Date().getFullYear()} SecScore v{pkg.version} &bull; Développé par <strong>Frédéric Tiercin</strong> pour <a href="https://skillx.fr" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">Skillx.fr</a>
           </p>
           <a href="https://github.com/Skillx-fr/SecScore" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-slate-400 transition-colors">
             Voir sur GitHub

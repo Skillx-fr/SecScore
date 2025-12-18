@@ -1,16 +1,45 @@
-# React + Vite
+# SecScore - Audit de Cybersécurité Dynamique
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**SecScore** est une application web moderne conçue pour évaluer la posture de cybersécurité d'une entreprise à travers un questionnaire interactif et pédagogique.
 
-Currently, two official plugins are available:
+![Aperçu de l'application](https://skillx.fr/assets/secscore-preview.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Fonctionnalités
 
-## React Compiler
+- **Thématiques d'Audit** : Choix entre Sécurité Web, Sécurité Interne (SI/AD) et Cloud/SaaS.
+- **Scoring en Temps Réel** : Une jauge dynamique calcule le score instantanément en fonction des réponses.
+- **Feedback Immédiat** : Chaque réponse est analysée (Bonne pratique / Risque) avec une explication pédagogique.
+- **Design Professionnel** : Interface moderne (Glassmorphism, Dark Mode) développée pour **Skillx.fr**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack Technique
 
-## Expanding the ESLint configuration
+- **Frontend** : React 19 + Vite
+- **Styling** : TailwindCSS v3
+- **Animations** : Framer Motion
+- **Icônes** : Lucide React
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation et Lancement
+
+1.  Cloner le dépôt :
+    ```bash
+    git clone https://github.com/Skillx-fr/SecScore.git
+    cd SecScore
+    ```
+
+2.  Installer les dépendances :
+    ```bash
+    npm install
+    ```
+
+3.  Lancer le serveur de développement :
+    ```bash
+    npm run dev
+    ```
+
+## Auteur
+
+Développé par **Frédéric Tiercin** pour **Skillx.fr**.
+
+## Licence
+
+Ce projet est sous licence propriétaire Skillx.fr.
