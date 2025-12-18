@@ -2,9 +2,20 @@ import { motion } from 'framer-motion';
 import { RefreshCw, Download } from 'lucide-react';
 import { LiveScoreGauge } from './LiveScoreGauge';
 import { jsPDF } from 'jspdf';
+import { PriorityMatrix } from './PriorityMatrix';
+// We need to access all questions to pass to the matrix. 
+// Ideally ResultsDashboard should receive them. 
+// For now, let's import the data directly or allow it to be passed.
+import data from '../data/questions.json';
 
-export function ResultsDashboard({ score, maxScore, grade, onReset }) {
+export function ResultsDashboard({ score, maxScore, grade, onReset, answers }) {
+    // 'answers' prop is needed to know which questions were missed.
+    // Note: App.jsx needs to pass 'answers' state to ResultsDashboard.
+
     const percentage = maxScore > 0 ? (score / maxScore) * 100 : 0;
+
+    // Flatten all questions for the matrix
+    const allQuestions = data.themes.flatMap(t => t.questions);
 
     const getExplanation = (p) => {
         if (p >= 90) return "Excellent ! Votre posture de sécurité est robuste. Continuez à maintenir ces bonnes pratiques.";
@@ -51,29 +62,37 @@ export function ResultsDashboard({ score, maxScore, grade, onReset }) {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-8 text-center">
+        <div className="max-w-6xl mx-auto p-4 md:p-8 text-center">
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="glass-panel p-12 rounded-3xl flex flex-col items-center"
+                className="glass-panel p-8 md:p-12 rounded-3xl flex flex-col items-center"
             >
                 <h2 className="text-3xl font-bold mb-8 gradient-text">
                     Audit Terminé
                 </h2>
 
-                <div className="mb-8">
-                    <LiveScoreGauge score={score} maxScore={maxScore} size={200} />
+                <div className="flex flex-col md:flex-row items-center justify-center gap-12 w-full mb-12">
+                    <div className="flex flex-col items-center">
+                        <LiveScoreGauge score={score} maxScore={maxScore} size={200} />
+                        <div className="mt-8">
+                            <p className="text-slate-400 uppercase tracking-widest text-sm mb-2">Note Globale</p>
+                            <div className="text-6xl font-black text-white mb-4">{grade}</div>
+                        </div>
+                    </div>
+
+                    <div className="max-w-md text-left">
+                        <h3 className="text-xl font-bold text-white mb-2">Analyse</h3>
+                        <p className="text-slate-300 leading-relaxed">
+                            {getExplanation(percentage)}
+                        </p>
+                    </div>
                 </div>
 
-                <div className="mb-8">
-                    <p className="text-slate-400 uppercase tracking-widest text-sm mb-2">Note Globale</p>
-                    <div className="text-6xl font-black text-white mb-4">{grade}</div>
-                    <p className="text-lg text-slate-300 max-w-xl mx-auto">
-                        {getExplanation(percentage)}
-                    </p>
-                </div>
+                {/* Priority Matrix */}
+                <PriorityMatrix questions={allQuestions} answers={answers} />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-lg">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-lg mt-8">
                     <button
                         onClick={onReset}
                         className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-slate-700 hover:bg-slate-600 transition-colors font-semibold"

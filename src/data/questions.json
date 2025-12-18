@@ -8,6 +8,7 @@
                 {
                     "id": "web_1",
                     "text": "Comment l'authentification des utilisateurs est-elle gérée ?",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Mot de passe simple uniquement",
@@ -32,6 +33,7 @@
                 {
                     "id": "web_2",
                     "text": "Utilisez-vous HTTPS sur l'ensemble de votre site web ?",
+                    "effort": "low",
                     "options": [
                         {
                             "text": "Non, HTTP par défaut ou mixte",
@@ -56,6 +58,7 @@
                 {
                     "id": "web_3",
                     "text": "Effectuez-vous des validations des entrées utilisateurs (Input Validation) ?",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Aucune validation spécifique",
@@ -80,6 +83,7 @@
                 {
                     "id": "web_4",
                     "text": "Comment stockez-vous les mots de passe des utilisateurs ?",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "En clair ou chiffrement réversible",
@@ -104,6 +108,7 @@
                 {
                     "id": "web_5",
                     "text": "Avez-vous mis en place des en-têtes de sécurité HTTP (CSP, X-Frame-Options, etc.) ?",
+                    "effort": "low",
                     "options": [
                         {
                             "text": "Non ou je ne sais pas",
@@ -128,6 +133,7 @@
                 {
                     "id": "web_6",
                     "text": "Comment gérez-vous les dépendances tierces (librairies, plugins) ?",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "Mises à jour manuelles irrégulières",
@@ -152,6 +158,7 @@
                 {
                     "id": "web_7",
                     "text": "Protection contre les attaques automatisées (Bots, Brute Force) ?",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Aucune protection",
@@ -176,6 +183,7 @@
                 {
                     "id": "web_8",
                     "text": "Gestion des messages d'erreur",
+                    "effort": "low",
                     "options": [
                         {
                             "text": "Affichage des détails techniques (Stack Trace)",
@@ -194,6 +202,7 @@
                 {
                     "id": "web_9",
                     "text": "Protection contre les attaques CSRF (Cross-Site Request Forgery)",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "Aucune mesure spécifique",
@@ -212,6 +221,7 @@
                 {
                     "id": "web_10",
                     "text": "Tests de sécurité (Pentest / Scanners)",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Jamais ou très rarement",
@@ -243,6 +253,7 @@
                 {
                     "id": "si_1",
                     "text": "Politique de privilèges administratifs (Active Directory)",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Nombreux administrateurs de domaine, comptes génériques",
@@ -267,6 +278,7 @@
                 {
                     "id": "si_2",
                     "text": "Mises à jour et Patch Management (OS & Logiciels)",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Manuel, quand on y pense",
@@ -291,6 +303,7 @@
                 {
                     "id": "si_3",
                     "text": "Segmentation du réseau",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Réseau plat (tout le monde accède à tout)",
@@ -315,6 +328,7 @@
                 {
                     "id": "si_4",
                     "text": "Sauvegardes (Backups)",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "Sauvegardes sur disque réseau accessible, rarement testées",
@@ -339,6 +353,7 @@
                 {
                     "id": "si_5",
                     "text": "Protection des postes de travail (Endpoint)",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "Antivirus gratuit ou obsolète",
@@ -363,6 +378,7 @@
                 {
                     "id": "si_6",
                     "text": "Accès distant (VPN / RDP)",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "RDP ouvert sur Internet ou VPN sans MFA",
@@ -387,6 +403,7 @@
                 {
                     "id": "si_7",
                     "text": "Sensibilisation des employés (Phishing)",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "Aucune formation",
@@ -411,6 +428,7 @@
                 {
                     "id": "si_8",
                     "text": "Sécurité du Wi-Fi",
+                    "effort": "low",
                     "options": [
                         {
                             "text": "WEP ou WPA2 avec mot de passe simple/partagé",
@@ -429,6 +447,7 @@
                 {
                     "id": "si_9",
                     "text": "Journalisation et Monitoring (Logs)",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Pas de centralisation, logs écrasés rapidement",
@@ -447,6 +466,7 @@
                 {
                     "id": "si_10",
                     "text": "Contrôle des périphériques USB",
+                    "effort": "low",
                     "options": [
                         {
                             "text": "Autorisé sans restriction",
@@ -472,6 +492,7 @@
                 {
                     "id": "cloud_1",
                     "text": "Authentification aux consoles d'administration Cloud",
+                    "effort": "low",
                     "options": [
                         {
                             "text": "Compte root utilisé, pas de MFA",
@@ -490,6 +511,7 @@
                 {
                     "id": "cloud_2",
                     "text": "Stockage de données (S3, Blob Storage)",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "Certains buckets sont publics par erreur/défaut",
@@ -508,6 +530,7 @@
                 {
                     "id": "cloud_3",
                     "text": "Gestion des clés d'accès (API Keys)",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "Clés statiques dans le code (Hardcoded)",
@@ -526,6 +549,7 @@
                 {
                     "id": "cloud_4",
                     "text": "Shadow IT et SaaS non approuvés",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Aucun contrôle, les employés utilisent ce qu'ils veulent",
@@ -544,6 +568,7 @@
                 {
                     "id": "cloud_5",
                     "text": "Conformité et Localisation des données",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "On ne sait pas où sont nos données",
@@ -562,6 +587,7 @@
                 {
                     "id": "cloud_6",
                     "text": "Sauvegardes des données SaaS (M365, Google Workspace)",
+                    "effort": "low",
                     "options": [
                         {
                             "text": "On compte sur la corbeille du fournisseur",
@@ -580,6 +606,7 @@
                 {
                     "id": "cloud_7",
                     "text": "Review des droits d'accès SaaS (Fichiers partagés)",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "Jamais, les liens de partage restent actifs indéfiniment",
@@ -598,6 +625,7 @@
                 {
                     "id": "cloud_8",
                     "text": "Chiffrement des données Cloud",
+                    "effort": "medium",
                     "options": [
                         {
                             "text": "Par défaut uniquement",
@@ -616,6 +644,7 @@
                 {
                     "id": "cloud_9",
                     "text": "Surveillance des coûts et ressources (Crypto-mining)",
+                    "effort": "low",
                     "options": [
                         {
                             "text": "Pas d'alertes de facturation",
@@ -634,6 +663,7 @@
                 {
                     "id": "cloud_10",
                     "text": "Isolation des environnements (Dev / Prod)",
+                    "effort": "high",
                     "options": [
                         {
                             "text": "Tout dans le même compte/abonnement",
