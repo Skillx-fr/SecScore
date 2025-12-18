@@ -54,12 +54,9 @@ function App() {
 
           {currentTheme && !isFinished && (
             <div className="flex items-center gap-4">
-              <div className="text-right hidden sm:block">
+              <div className="text-right sm:block">
                 <div className="text-xs text-slate-400 uppercase">Score en direct</div>
                 <div className="font-mono font-bold text-blue-400">{totalScore} / {currentMaxScore}</div>
-              </div>
-              <div className="w-12 h-12">
-                <LiveScoreGauge score={totalScore} maxScore={currentMaxScore} size={48} />
               </div>
             </div>
           )}
@@ -78,11 +75,14 @@ function App() {
             onReset={handleReset}
           />
         ) : (
-          <QuestionWizard
-            theme={currentTheme}
-            onAnswer={addAnswer}
-            onFinish={handleFinish}
-          />
+          <div className="flex flex-col items-center w-full max-w-3xl mx-auto space-y-8">
+            <LiveScoreGauge score={totalScore} maxScore={currentMaxScore} size={160} />
+            <QuestionWizard
+              theme={currentTheme}
+              onAnswer={addAnswer}
+              onFinish={handleFinish}
+            />
+          </div>
         )}
       </main>
 
