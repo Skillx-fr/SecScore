@@ -8,6 +8,7 @@
                 {
                     "id": "web_1",
                     "text": "Comment l'authentification des utilisateurs est-elle gérée ?",
+                    "businessImpact": "Risque élevé d'intrusion : Une authentification faible permet aux attaquants de voler des accès et de pénétrer le système sans effort.",
                     "effort": "high",
                     "options": [
                         {
@@ -33,6 +34,7 @@
                 {
                     "id": "web_2",
                     "text": "Utilisez-vous HTTPS sur l'ensemble de votre site web ?",
+                    "businessImpact": "Perte de confidentialité : Les données clients (mots de passe, cartes bancaires) peuvent être interceptées en clair.",
                     "effort": "low",
                     "options": [
                         {
@@ -58,6 +60,7 @@
                 {
                     "id": "web_3",
                     "text": "Effectuez-vous des validations des entrées utilisateurs (Input Validation) ?",
+                    "businessImpact": "Compromission du site : Permet aux pirates de modifier le comportement du site ou de voler la base de données (Injections).",
                     "effort": "high",
                     "options": [
                         {
@@ -83,6 +86,7 @@
                 {
                     "id": "web_4",
                     "text": "Comment stockez-vous les mots de passe des utilisateurs ?",
+                    "businessImpact": "Fuite massive de données : En cas de piratage, tous les comptes utilisateurs seraient accessibles immédiatement.",
                     "effort": "high",
                     "options": [
                         {
@@ -108,6 +112,7 @@
                 {
                     "id": "web_5",
                     "text": "Avez-vous mis en place des en-têtes de sécurité HTTP (CSP, X-Frame-Options, etc.) ?",
+                    "businessImpact": "Vulnérabilité client : Expose les visiteurs de votre site à des attaques malveillantes (redirections, faux contenus).",
                     "effort": "low",
                     "options": [
                         {
@@ -133,6 +138,7 @@
                 {
                     "id": "web_6",
                     "text": "Comment gérez-vous les dépendances tierces (librairies, plugins) ?",
+                    "businessImpact": "Porte dérobée : Un plugin non mis à jour est le point d'entrée le plus fréquent pour les rançongiciels.",
                     "effort": "medium",
                     "options": [
                         {
@@ -158,6 +164,7 @@
                 {
                     "id": "web_7",
                     "text": "Protection contre les attaques automatisées (Bots, Brute Force) ?",
+                    "businessImpact": "Déni de service : Risque de surcharge du site et de blocage de l'activité commerciale par des robots.",
                     "effort": "high",
                     "options": [
                         {
@@ -183,6 +190,7 @@
                 {
                     "id": "web_8",
                     "text": "Gestion des messages d'erreur",
+                    "businessImpact": "Facilitation d'attaque : Les erreurs techniques révèlent des informations clés aidant les pirates à cibler leurs attaques.",
                     "effort": "low",
                     "options": [
                         {
@@ -202,6 +210,7 @@
                 {
                     "id": "web_9",
                     "text": "Protection contre les attaques CSRF (Cross-Site Request Forgery)",
+                    "businessImpact": "Usurpation d'identité : Un attaquant peut forcer un administrateur connecté à effectuer des actions critiques.",
                     "effort": "medium",
                     "options": [
                         {
@@ -221,6 +230,7 @@
                 {
                     "id": "web_10",
                     "text": "Tests de sécurité (Pentest / Scanners)",
+                    "businessImpact": "Aveuglement stratégique : Sans tests, nous ignorons nos failles jusqu'à ce qu'il soit trop tard.",
                     "effort": "high",
                     "options": [
                         {
@@ -253,6 +263,7 @@
                 {
                     "id": "si_1",
                     "text": "Politique de privilèges administratifs (Active Directory)",
+                    "businessImpact": "Prise de contrôle totale : Trop d'administrateurs signifie que le compromission d'un seul compte donne les clés de toute l'entreprise.",
                     "effort": "high",
                     "options": [
                         {
@@ -278,6 +289,7 @@
                 {
                     "id": "si_2",
                     "text": "Mises à jour et Patch Management (OS & Logiciels)",
+                    "businessImpact": "Ransomware : Les systèmes non mis à jour sont les premières cibles des virus chiffrant les données.",
                     "effort": "high",
                     "options": [
                         {
@@ -303,6 +315,7 @@
                 {
                     "id": "si_3",
                     "text": "Segmentation du réseau",
+                    "businessImpact": "Propagation virale : Sans segmentation, un virus sur un poste RH peut infecter les serveurs de production en quelques secondes.",
                     "effort": "high",
                     "options": [
                         {
@@ -328,6 +341,7 @@
                 {
                     "id": "si_4",
                     "text": "Sauvegardes (Backups)",
+                    "businessImpact": "Faillite potentielle : Sans sauvegardes protégées, une attaque par Ransomware peut causer la fermeture définitive de l'entreprise.",
                     "effort": "medium",
                     "options": [
                         {
@@ -353,6 +367,7 @@
                 {
                     "id": "si_5",
                     "text": "Protection des postes de travail (Endpoint)",
+                    "businessImpact": "Infection silencieuse : Un antivirus basique ne voit pas les attaques modernes qui volent les données discrètement.",
                     "effort": "medium",
                     "options": [
                         {
@@ -378,6 +393,7 @@
                 {
                     "id": "si_6",
                     "text": "Accès distant (VPN / RDP)",
+                    "businessImpact": "Porte grande ouverte : Les accès distants mal sécurisés sont la méthode n°1 d'intrusion des groupes de hackers.",
                     "effort": "medium",
                     "options": [
                         {
@@ -403,6 +419,7 @@
                 {
                     "id": "si_7",
                     "text": "Sensibilisation des employés (Phishing)",
+                    "businessImpact": "Erreur humaine : La technologie ne peut pas tout bloquer si un employé ouvre la mauvaise pièce jointe.",
                     "effort": "medium",
                     "options": [
                         {
@@ -428,6 +445,7 @@
                 {
                     "id": "si_8",
                     "text": "Sécurité du Wi-Fi",
+                    "businessImpact": "Espionnage : Un Wi-Fi mal sécurisé permet d'écouter les communications et d'accéder au réseau interne.",
                     "effort": "low",
                     "options": [
                         {
@@ -447,6 +465,7 @@
                 {
                     "id": "si_9",
                     "text": "Journalisation et Monitoring (Logs)",
+                    "businessImpact": "Impunité : Sans logs, impossible de savoir qui a volé les données ni comment ils sont entrés.",
                     "effort": "high",
                     "options": [
                         {
@@ -466,6 +485,7 @@
                 {
                     "id": "si_10",
                     "text": "Contrôle des périphériques USB",
+                    "businessImpact": "Sabotage physique : Une simple clé USB infectée ramassée sur le parking peut compromettre tout le réseau.",
                     "effort": "low",
                     "options": [
                         {
@@ -492,6 +512,7 @@
                 {
                     "id": "cloud_1",
                     "text": "Authentification aux consoles d'administration Cloud",
+                    "businessImpact": "Perte de contrôle totale : Si le compte administrateur est compromis, l'attaquant peut tout supprimer ou voler en quelques minutes.",
                     "effort": "low",
                     "options": [
                         {
@@ -511,6 +532,7 @@
                 {
                     "id": "cloud_2",
                     "text": "Stockage de données (S3, Blob Storage)",
+                    "businessImpact": "Fuite de données massive : Un stockage mal configuré est visible par le monde entier, causant un scandale immédiat.",
                     "effort": "medium",
                     "options": [
                         {
@@ -530,6 +552,7 @@
                 {
                     "id": "cloud_3",
                     "text": "Gestion des clés d'accès (API Keys)",
+                    "businessImpact": "Accès non autorisé : Des clés volées permettent à des pirates d'utiliser vos services à vos frais ou de voler vos données.",
                     "effort": "medium",
                     "options": [
                         {
@@ -549,6 +572,7 @@
                 {
                     "id": "cloud_4",
                     "text": "Shadow IT et SaaS non approuvés",
+                    "businessImpact": "Fuite invisible : Les employés stockant des données sensibles sur des outils gratuits exposent l'entreprise sans que la DSI le sache.",
                     "effort": "high",
                     "options": [
                         {
@@ -568,6 +592,7 @@
                 {
                     "id": "cloud_5",
                     "text": "Conformité et Localisation des données",
+                    "businessImpact": "Risque légal : Ne pas savoir où sont les données vous expose à des amendes lourdes (RGPD).",
                     "effort": "high",
                     "options": [
                         {
@@ -587,6 +612,7 @@
                 {
                     "id": "cloud_6",
                     "text": "Sauvegardes des données SaaS (M365, Google Workspace)",
+                    "businessImpact": "Perte de données : Microsoft/Google ne sont pas responsables de vos données en cas d'erreur humaine ou de suppression malveillante.",
                     "effort": "low",
                     "options": [
                         {
@@ -606,6 +632,7 @@
                 {
                     "id": "cloud_7",
                     "text": "Review des droits d'accès SaaS (Fichiers partagés)",
+                    "businessImpact": "Espionnage industriel : D'anciens liens de partage permettent à des tiers d'accéder à vos documents confidentiels indéfiniment.",
                     "effort": "medium",
                     "options": [
                         {
@@ -625,6 +652,7 @@
                 {
                     "id": "cloud_8",
                     "text": "Chiffrement des données Cloud",
+                    "businessImpact": "Compromission de confidentialité : Sans chiffrement adéquat, vos données sont lisibles par le fournisseur ou en cas d'intrusion physique.",
                     "effort": "medium",
                     "options": [
                         {
@@ -644,6 +672,7 @@
                 {
                     "id": "cloud_9",
                     "text": "Surveillance des coûts et ressources (Crypto-mining)",
+                    "businessImpact": "Perte financière directe : Des pirates peuvent utiliser votre Cloud pour miner des cryptomonnaies, générant des factures astronomiques.",
                     "effort": "low",
                     "options": [
                         {
@@ -663,6 +692,7 @@
                 {
                     "id": "cloud_10",
                     "text": "Isolation des environnements (Dev / Prod)",
+                    "businessImpact": "Sabotage de la production : Une erreur de développement peut accidentellement détruire votre service commercial en direct.",
                     "effort": "high",
                     "options": [
                         {

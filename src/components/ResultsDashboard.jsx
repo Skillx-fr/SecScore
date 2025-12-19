@@ -63,40 +63,54 @@ export function ResultsDashboard({ score, maxScore, grade, onReset, answers }) {
 
     const handleGenerateEmail = () => {
         // Identify top 3 critical risks
-        // Filter questions where user score < max score AND riskLevel is "high" 
+        // Logic: Questions where score < max AND (riskLevel is high OR explicitly tagged in 'Impact' matrix quadrants?)
+        // Let's stick to High Risk questions that were missed.
         const criticalRisks = allQuestions.filter(q => {
             const userAnswer = answers[q.id];
             const maxQScore = Math.max(...q.options.map(o => o.score));
-            if (!userAnswer || userAnswer.score >= maxQScore) return false;
 
-            // Find the option they selected (or assume 0 score if missing) to check its risk level??
-            // Actually, the risk comes from the fact they *missed* the good answer.
-            // Let's use the 'high' risk check from the PriorityMatrix logic or just check if it's high impact.
-            // Simplification: Check if the question allows a 'high' risk answer.
+            // If answered correctly (max score), it's not a risk.
+            if (userAnswer && userAnswer.score === maxQScore) return false;
+
+            // It is a risk. Is it critical? 
+            // We look at the question's potential risk. 
+            // Simplification: If the question HAS a 'high' risk option, it's a high risk topic.
             return q.options.some(o => o.riskLevel === 'high');
-        }).slice(0, 3);
+        })
+            // Prioritize: 
+            // 1. "Strategic" (High Effort, High Risk) - These need budget!
+            // 2. "Quick Wins" (Low Effort, High Risk) - These need immediate action.
+            // Let's sort by Effort? Or just take the first 3?
+            // Let's randomly shuffle or just take the first 3 relevant ones? 
+            // Let's take the first 3 to keep it simple, but maybe prioritizing High Effort ones helps get budget?
+            // Actually, asking budget for "Quick Wins" is easier. Let's just take the top 3 found.
+            .slice(0, 3);
 
-        const riskList = criticalRisks.map(r => `- ${r.text}`).join('\n');
+        if (criticalRisks.length === 0) {
+            alert("Aucun risque critique détecté. Pas d'email nécessaire !");
+            return;
+        }
 
-        const emailBody = `Objet : Synthèse des risques cybersécurité - Actions prioritaires requises
+        const riskList = criticalRisks.map(r => `• ${r.businessImpact || r.text}`).join('\n');
+
+        const emailBody = `Objet : Alerte Cybersécurité : Risques critiques et besoins d'investissements
 
 Bonjour,
 
-Suite à un audit rapide de notre posture de sécurité (effectué via SecScore), nous avons identifié des vulnérabilités critiques nécessitant une attention immédiate.
+Un audit de notre posture de sécurité (effectué via SecScore) a révélé une note de ${grade} (${score}/${maxScore}).
 
-Score actuel de sécurité : ${grade} (${score}/${maxScore})
+Nous sommes actuellement exposés à des risques majeurs qui pourraient impacter la continuité de notre activité :
 
-Les points d'alerte principaux qui exposent l'entreprise sont :
 ${riskList}
 
-Ne pas traiter ces points nous expose à des risques élevés (Ransomware, Fuite de données, Arrêt d'activité).
+Pour mitiger ces menaces (Ransomware, Fuite de données, Arrêt de production), des actions correctives sont urgentes.
 
-Je propose de planifier une réunion pour valider un plan d'action correctif et le budget associé.
+Je sollicite une réunion pour vous présenter le plan de reméditation et valider le budget nécessaire à la sécurisation de nos actifs.
 
-Cordialement,`;
+Cordialment,`;
 
         navigator.clipboard.writeText(emailBody);
-        alert("E-mail copié dans le presse-papier !");
+        alert("E-mail 'Spécial CODIR' copié dans le presse-papier !");
     };
 
     return (
