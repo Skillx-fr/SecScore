@@ -9,7 +9,7 @@
 - **Thématiques d'Audit** : Choix entre Sécurité Web, Sécurité Interne (SI/AD) et Cloud/SaaS.
 - **Scoring en Temps Réel** : Une jauge dynamique calcule le score instantanément en fonction des réponses.
 - **Feedback Immédiat** : Chaque réponse est analysée (Bonne pratique / Risque) avec une explication pédagogique.
-- **Design Professionnel** : Interface moderne (Glassmorphism, Dark Mode) développée pour **Skillx.fr**.
+- **Feedback Immédiat** : Chaque réponse est analysée (Bonne pratique / Risque) avec une explication pédagogique.
 
 ## Stack Technique
 
@@ -38,8 +38,8 @@
 
 ## Auteur
 
-Développé par **Frédéric Tiercin** pour **Skillx.fr**.
+Développé par **Frédéric Tiercin**.
 
 ## Licence
 
-Ce projet est sous licence propriétaire Skillx.fr.
+Ce projet est sous licence **Apache 2.0**. Vous êtes libre de l'utiliser, le modifier et le distribuer.
