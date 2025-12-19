@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { useRealTimeScore } from './hooks/useRealTimeScore';
 import { ThemeSelector } from './components/ThemeSelector';
 import { QuestionWizard } from './components/QuestionWizard';
@@ -42,6 +43,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-50 flex flex-col">
+      <Analytics />
       {/* Header */}
       <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
