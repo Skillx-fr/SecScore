@@ -9,7 +9,7 @@
 - **Thématiques d'Audit** : Choix entre Sécurité Web, Sécurité Interne (SI/AD) et Cloud/SaaS.
 - **Scoring en Temps Réel** : Une jauge dynamique calcule le score instantanément en fonction des réponses.
 - **Feedback Immédiat** : Chaque réponse est analysée (Bonne pratique / Risque) avec une explication pédagogique.
-- **Feedback Immédiat** : Chaque réponse est analysée (Bonne pratique / Risque) avec une explication pédagogique.
+
 
 ## Stack Technique
 
