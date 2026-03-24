@@ -112,9 +112,6 @@ export function PriorityMatrix({ questions, answers }) {
                     "bg-slate-800/20"
                 )}
             </div>
-            <p className="text-xs text-slate-500 mt-4 italic text-center">
-                * Basé sur la complexité estimée de mise en œuvre et l'impact sécurité.
-            </p>
         </div>
     );
 }

@@ -144,24 +144,28 @@ Cordialment,`;
                 {/* Priority Matrix */}
                 <PriorityMatrix questions={allQuestions} answers={answers} />
 
+                <p className="text-xs text-slate-500 mt-2 mb-8 italic text-center">
+                    * Basé sur la complexité estimée de mise en œuvre et l'impact sécurité.
+                </p>
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl mt-8">
                     <button
                         onClick={onReset}
-                        className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-slate-700 hover:bg-slate-600 transition-colors font-semibold"
+                        className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-slate-700 hover:bg-skillx/40 transition-colors font-semibold"
                     >
                         <RefreshCw className="w-5 h-5" />
                         Nouvel Audit
                     </button>
                     <button
                         onClick={handleExportPDF}
-                        className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 transition-colors font-semibold shadow-lg shadow-blue-500/20"
+                        className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-blue-600 hover:bg-skillx transition-colors font-semibold shadow-lg shadow-blue-500/20"
                     >
                         <Download className="w-5 h-5" />
                         Exporter PDF
                     </button>
                     <button
                         onClick={handleGenerateEmail}
-                        className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-purple-600 hover:bg-purple-500 transition-colors font-semibold shadow-lg shadow-purple-500/20"
+                        className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-purple-600 hover:bg-skillx transition-colors font-semibold shadow-lg shadow-purple-500/20"
                     >
                         <span className="text-xl">📧</span>
                         Email CODIR

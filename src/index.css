@@ -6,7 +6,8 @@
 
 @layer base {
   body {
-    @apply bg-slate-900 text-slate-50 font-sans antialiased;
+    background-color: #101325;
+    @apply text-slate-50 font-sans antialiased;
   }
 }
 

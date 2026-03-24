@@ -24,6 +24,14 @@ export function useRealTimeScore() {
         }));
     };
 
+    const removeAnswer = (questionId) => {
+        setAnswers(prev => {
+            const newAnswers = { ...prev };
+            delete newAnswers[questionId];
+            return newAnswers;
+        });
+    };
+
     const resetScore = () => {
         setAnswers({});
     };
@@ -32,6 +40,7 @@ export function useRealTimeScore() {
         answers,
         totalScore,
         addAnswer,
+        removeAnswer,
         calculateGrade,
         resetScore
     };

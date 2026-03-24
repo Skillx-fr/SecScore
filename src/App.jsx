@@ -4,6 +4,7 @@ import { ThemeSelector } from './components/ThemeSelector';
 import { QuestionWizard } from './components/QuestionWizard';
 import { ResultsDashboard } from './components/ResultsDashboard';
 import { LiveScoreGauge } from './components/LiveScoreGauge';
+import { Home } from 'lucide-react';
 import data from './data/questions.json';
 import pkg from '../package.json';
 
@@ -11,7 +12,7 @@ function App() {
   const [currentTheme, setCurrentTheme] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
 
-  const { totalScore, addAnswer, calculateGrade, resetScore, answers } = useRealTimeScore();
+  const { totalScore, addAnswer, removeAnswer, calculateGrade, resetScore, answers } = useRealTimeScore();
 
   // Calculate dynamic max score based on current theme's questions
   const currentMaxScore = currentTheme
@@ -41,16 +42,17 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-50 flex flex-col">
+    <div className="min-h-screen text-slate-50 flex flex-col">
       {/* Header */}
-      <header className="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+      <header className="border-b border-white/5 bg-[#101325]/50 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 font-bold text-xl cursor-pointer" onClick={handleReset}>
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center">
-              <span className="text-white">S</span>
-            </div>
-            <span>SecScore</span>
-          </div>
+          <button
+            onClick={handleReset}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-skillx/40 text-slate-200 transition-colors font-semibold text-sm border border-slate-700"
+          >
+            <Home className="w-4 h-4" />
+            <span>Retour au départ</span>
+          </button>
 
           {currentTheme && !isFinished && (
             <div className="flex items-center gap-4">
@@ -81,6 +83,7 @@ function App() {
             <QuestionWizard
               theme={currentTheme}
               onAnswer={addAnswer}
+              onRemoveAnswer={removeAnswer}
               onFinish={handleFinish}
             />
           </div>
