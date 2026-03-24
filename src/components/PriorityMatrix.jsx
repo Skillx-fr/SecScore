@@ -5,10 +5,10 @@ export function PriorityMatrix({ questions, answers }) {
     // Filter for items where the user didn't get the max score
     const improvements = questions.filter(q => {
         const userAnswer = answers[q.id];
-        if (!userAnswer) return true; // Not answered counts as improvement needed? Or skip? Let's assume answered.
-        // Logic: find max score for this question
+        if (!userAnswer) return true; // Not answered counts as improvement needed
+        // find max score for this question
         const maxQScore = Math.max(...q.options.map(o => o.score));
-        return userAnswer.score < maxQScore;
+        return (userAnswer.score || 0) < maxQScore;
     });
 
     // Categorize

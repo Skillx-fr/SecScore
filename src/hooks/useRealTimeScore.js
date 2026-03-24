@@ -4,7 +4,7 @@ export function useRealTimeScore() {
     const [answers, setAnswers] = useState({}); // { questionId: score }
 
     const totalScore = useMemo(() => {
-        return Object.values(answers).reduce((acc, curr) => acc + curr, 0);
+        return Object.values(answers).reduce((acc, curr) => acc + (curr.score || 0), 0);
     }, [answers]);
 
     const calculateGrade = (score, maxScore) => {
@@ -17,10 +17,10 @@ export function useRealTimeScore() {
         return 'F';
     };
 
-    const addAnswer = (questionId, score) => {
+    const addAnswer = (questionId, option) => {
         setAnswers(prev => ({
             ...prev,
-            [questionId]: score
+            [questionId]: option
         }));
     };
 

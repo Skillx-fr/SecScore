@@ -20,7 +20,7 @@ export function QuestionWizard({ theme, onAnswer, onRemoveAnswer, onFinish }) {
             // Select new
             setSelectedOptionIndex(index);
             setShowFeedback(true);
-            onAnswer(question.id, option.score);
+            onAnswer(question.id, option);
         }
     };
 
